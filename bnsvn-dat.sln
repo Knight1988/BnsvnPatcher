@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bnsvn-dat", "bnsvn-dat\bnsvn-dat.csproj", "{5E8B79EB-8BC8-4426-95A1-2E8D9BCE410E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bnsvn-dat.Tests", "bnsvn-dat.Tests\bnsvn-dat.Tests.csproj", "{9202D79D-3A26-4F42-91FB-4AB3F2539181}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E8B79EB-8BC8-4426-95A1-2E8D9BCE410E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8B79EB-8BC8-4426-95A1-2E8D9BCE410E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8B79EB-8BC8-4426-95A1-2E8D9BCE410E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8B79EB-8BC8-4426-95A1-2E8D9BCE410E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9202D79D-3A26-4F42-91FB-4AB3F2539181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9202D79D-3A26-4F42-91FB-4AB3F2539181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9202D79D-3A26-4F42-91FB-4AB3F2539181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9202D79D-3A26-4F42-91FB-4AB3F2539181}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
