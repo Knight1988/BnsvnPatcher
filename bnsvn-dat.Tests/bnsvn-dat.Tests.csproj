@@ -49,36 +49,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bnsvn-dat\bnsvn-dat.csproj">
-      <Project>{5e8b79eb-8bc8-4426-95a1-2e8d9bce410e}</Project>
-      <Name>bnsvn-dat</Name>
+    <ProjectReference Include="..\BNSDat\BNSDat.csproj">
+      <Project>{836DAF87-044B-432D-A157-F5DD772EB5B4}</Project>
+      <Name>BNSDat</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\bnsvn-dat\bnsdat\config64.dat">
-      <Link>bnsdat\config64.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\bnsvn-dat\bnsdat\xml.dat">
-      <Link>bnsdat\xml.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\bnsvn-dat\Profiles\Dark_Knight\DK Profile.xml">
+    <Content Include="..\BnsPatcher\Profiles\DK Profile.xml">
       <Link>Profiles\DK Profile.xml</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\BnsPatcher\Profiles\Hoang Profile.xml">
+      <Link>Profiles\Hoang Profile.xml</Link>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\bnsvn-dat\bnsdat\config.dat">
-      <Link>bnsdat\config.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\bnsvn-dat\bnsdat\xml64.dat">
-      <Link>bnsdat\xml64.dat</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="app.config" />
+    <None Include="bnsdat\config.dat" />
+    <None Include="bnsdat\config64.dat" />
+    <None Include="bnsdat\xml.dat" />
+    <None Include="bnsdat\xml64.dat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

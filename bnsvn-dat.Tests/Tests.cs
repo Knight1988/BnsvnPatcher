@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using bnsvn_dat.Business;
+using BNSDat;
 using NUnit.Framework;
 
 namespace bnsvn_dat.Tests
@@ -16,7 +16,7 @@ namespace bnsvn_dat.Tests
             var profilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Profiles", "DK profile.xml");
 
             // Act
-            var patch = XmlPatchBusiness.ReadPatch(profilePath);
+            var patch = XmlPatch.ReadProfile(profilePath);
             
             // Assert
             Assert.AreEqual("xml[bit].dat.files\\\\client.config2.xml", patch.Patches[0].FileName);
@@ -31,21 +31,28 @@ namespace bnsvn_dat.Tests
         {
             var basePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "bnsdat");
             var profilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Profiles", "DK profile.xml");
-            var patch = XmlPatchBusiness.ReadPatch(profilePath);
+            var patch = XmlPatch.ReadProfile(profilePath);
 
-            XmlPatchBusiness.ReplaceValues(patch, basePath);
+            XmlPatch.ReplaceValues(patch, basePath);
         }
 
-        [TestCase("config.dat", false)]
-        [TestCase("config64.dat", true)]
-        [TestCase("xml.dat", false)]
-        [TestCase("xml64.dat", true)]
-        public void ExtractDatTest(string fileName, bool is64Bit)
+        [TestCase("config.dat", false, "system.config2.xml")]
+        [TestCase("config64.dat", true, "system.config2.xml")]
+        [TestCase("xml.dat", false, "client.config2.xml")]
+        [TestCase("xml64.dat", true, "client.config2.xml")]
+        public void ExtractDatTest(string fileName, bool is64Bit, string fileToCheck)
         {
+            // Arrange
             var pathOriginal = Path.Combine(TestContext.CurrentContext.TestDirectory, "bnsdat", fileName);
 
+            // Act
             var bnsDat = new BNSDat.BNSDat();
             bnsDat.Extract(pathOriginal, is64Bit);
+
+            // Assert
+            var extractedDir = pathOriginal + ".files";
+            var fileCheck = Path.Combine(extractedDir, fileToCheck);
+            FileAssert.Exists(fileCheck);
         }
 
         [TestCase("config.dat.files", false)]
