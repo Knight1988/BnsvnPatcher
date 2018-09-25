@@ -1,0 +1,5 @@
+config.dat filter=lfs diff=lfs merge=lfs -text
+config64.dat filter=lfs diff=lfs merge=lfs -text
+xml.dat filter=lfs diff=lfs merge=lfs -text
+xml64.dat filter=lfs diff=lfs merge=lfs -text
+xmlFiles.zip filter=lfs diff=lfs merge=lfs -text
