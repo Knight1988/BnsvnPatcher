@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using BNSDat;
@@ -21,7 +22,11 @@ namespace bnsvn_dat.Tests
                 {
                     var entryFullname = Path.Combine(baseFolder, entry.FullName);
                     var entryPath = Path.GetDirectoryName(entryFullname);
-                    if (!Directory.Exists(entryPath)) Directory.CreateDirectory(entryPath ?? throw new InvalidOperationException());
+                    if (!Directory.Exists(entryPath))
+                    {
+                        Debug.Assert(entryPath != null, nameof(entryPath) + " != null");
+                        Directory.CreateDirectory(entryPath);
+                    }
 
                     var entryFn = Path.GetFileName(entryFullname);
                     if (!string.IsNullOrEmpty(entryFn))
