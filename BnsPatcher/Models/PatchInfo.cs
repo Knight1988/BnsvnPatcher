@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using BnsPatcher.Annotations;
 
 namespace BnsPatcher.Models
@@ -21,7 +16,7 @@ namespace BnsPatcher.Models
 
         public string DatFolder
         {
-            get => _datFolder;
+            get { return _datFolder; }
             set
             {
                 if (value == _datFolder) return;
@@ -32,7 +27,7 @@ namespace BnsPatcher.Models
 
         public string ProfilePath
         {
-            get => _profilePath;
+            get { return _profilePath; }
             set
             {
                 if (value == _profilePath) return;
@@ -43,10 +38,10 @@ namespace BnsPatcher.Models
 
         public double Progress
         {
-            get => _progress;
+            get { return _progress; }
             set
             {
-                if (value == _progress) return;
+                if (Math.Abs(value - _progress) < double.Epsilon) return;
                 _progress = value;
                 OnPropertyChanged();
             }
@@ -54,7 +49,7 @@ namespace BnsPatcher.Models
 
         public string ProgressText
         {
-            get => _progressText;
+            get { return _progressText; }
             set
             {
                 if (value == _progressText) return;
@@ -65,10 +60,10 @@ namespace BnsPatcher.Models
 
         public double ProgressMaximum
         {
-            get => _progressMaximum;
+            get { return _progressMaximum; }
             set
             {
-                if (value == _progressMaximum) return;
+                if (Math.Abs(value - _progressMaximum) < double.Epsilon) return;
                 _progressMaximum = value;
                 OnPropertyChanged();
             }
@@ -76,7 +71,7 @@ namespace BnsPatcher.Models
 
         public bool IsPatching
         {
-            get => _isPatching;
+            get { return _isPatching; }
             set
             {
                 if (value == _isPatching) return;
