@@ -46,8 +46,8 @@ namespace bnsvn_dat.Tests
             
             // Assert
             Assert.AreEqual("config[bit].dat.files\\\\system.config2.xml", patch.Patches[0].FileName);
-            Assert.AreEqual("use-optimal-performance-mode-option", patch.Patches[0].FindAndReplace[0].Find.Option.Name);
-            Assert.AreEqual("use-optimal-performance-mode-option", patch.Patches[0].FindAndReplace[0].Replace.Option.Name);
+            Assert.AreEqual("use-context-simple-mode-player-character-level", patch.Patches[0].FindAndReplace[0].Find.Option.Name);
+            Assert.AreEqual("use-context-simple-mode-player-character-level", patch.Patches[0].FindAndReplace[0].Replace.Option.Name);
             Assert.AreEqual("false", patch.Patches[0].FindAndReplace[0].Find.Option.Value);
             Assert.AreEqual("true", patch.Patches[0].FindAndReplace[0].Replace.Option.Value);
         }
