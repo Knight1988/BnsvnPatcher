@@ -11,13 +11,11 @@ namespace BnsPatcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        PatchInfo _patchInfo = new PatchInfo();
         private double _progress = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = _patchInfo;
         }
 
         private void btnBrowseDatFolder_Click(object sender, RoutedEventArgs e)
@@ -36,8 +34,8 @@ namespace BnsPatcher
         private async Task UpdateProgressAsync(double progress, string progressText)
         {
             await Task.Yield();
-            _patchInfo.Progress = progress;
-            _patchInfo.ProgressText = progressText;
+            PatchInfo.Progress = progress;
+            PatchInfo.ProgressText = progressText;
         }
 
         private async Task UpdateProgressAsync(double jobDone, double total, string progressText)
