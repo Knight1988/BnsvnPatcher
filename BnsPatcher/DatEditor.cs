@@ -1,78 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BnsPatcher
 {
-    class Decryption
+    public class DatEditor
     {
-        private static readonly byte[] XorKey = new byte[16]
-        {
-            164,
-            159,
-            216,
-            179,
-            246,
-            142,
-            57,
-            194,
-            45,
-            224,
-            97,
-            117,
-            92,
-            75,
-            26,
-            7
-        };
-
-        private static string DecryptKey(string encKey)
-        {
-            var encoding = DetectEncoding(encKey);
-            var s = EncryptDecrypt(encoding.GetString(FromHex(encKey)));
-            return encoding.GetString(Convert.FromBase64String(s));
-        }
-
-        public static Encoding DetectEncoding(string content)
-        {
-            using (var streamWriter = new StreamWriter(".\\dbg.txt"))
-            {
-                streamWriter.Flush();
-                streamWriter.Write(content);
-            }
-            using (var streamReader = new StreamReader(".\\dbg.txt", true))
-            {
-                streamReader.ReadToEnd();
-                return streamReader.CurrentEncoding;
-            }
-        }
-
-        private static string EncryptDecrypt(string input)
-        {
-            var charArray = Encoding.UTF8.GetString(XorKey).ToCharArray();
-            var chArray = new char[input.Length];
-            for (var index = 0; index < input.Length; ++index)
-                chArray[index] = (char)(input[index] ^ (uint)charArray[index % charArray.Length]);
-            return new string(chArray);
-        }
-
-        public static byte[] FromHex(string hex)
-        {
-            hex = hex.Replace(" ", "").Replace("-", "");
-            return Enumerable.Range(0, hex.Length / 2).Select<int, byte>(i => Convert.ToByte(hex.Substring(i * 2, 2), 16)).ToArray<byte>();
-        }
-    }
-
-    class DatEditor
-    {
-        private string _aesKey;
+        private readonly string _aesKey;
+        private BNSDat.BNSDat _bnsDat;
+        public Dictionary<string, string> MyDictionary { get; } = new Dictionary<string, string>();
 
         public DatEditor()
         {
             _aesKey = Decryption.DecryptKey("EFBE9CEFBE90D9B5EFBE88EFBEA543EFBEB447EFBEB0274C36285D7FEFBE9BEFBEA4D99EEFBF88EFBE8770EFBEAC10EFBF80");
+            _bnsDat = new BNSDat.BNSDat { AES_KEY = _aesKey, XOR_KEY = Decryption.XorKey };
+        }
+
+        public void LoadFolder(string path)
+        {
+            foreach (var file in new DirectoryInfo(path).GetFiles("*.dat"))
+            {
+                if (file != null)
+                {
+                    var directoryName = Path.GetDirectoryName(file.FullName);
+                    if (!MyDictionary.ContainsKey(file.Name))
+                    {
+                        MyDictionary.Add(file.Name, directoryName);
+                    }
+                }
+            }
+        }
+
+        public void LoadDataFile(string path)
+        {
+            var fileList = _bnsDat.GetFileList(path, path.Contains("64"));
+        }
+
+        public string ExtractFile(string datPath, string filePath)
+        {
+            var stringList = new List<string>()
+            {
+                filePath
+            };
+            var data = _bnsDat.ExtractFile(datPath, stringList, datPath.Contains("64"));
+            return Encoding.UTF8.GetString(data[filePath]);
+        }
+
+        public void SaveFile(string datPath, string filePath, string content)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(content);
+            var dictionary = new Dictionary<string, byte[]> {{filePath, bytes}};
+            _bnsDat.CompressFiles(datPath, dictionary, datPath.Contains("64"), 1);
         }
     }
 }
