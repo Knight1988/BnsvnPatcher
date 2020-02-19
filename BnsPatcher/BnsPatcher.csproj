@@ -55,6 +55,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>B&amp;S.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DatEditingDll">
       <HintPath>..\..\..\source\repos\DatEditor\DatEditor\DatEditingDll.dll</HintPath>
@@ -142,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+    <Resource Include="B&amp;S.ico" />
     <Content Include="Profiles\Hoang Profile.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
