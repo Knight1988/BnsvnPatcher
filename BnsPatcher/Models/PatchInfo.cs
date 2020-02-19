@@ -10,12 +10,14 @@ namespace BnsPatcher.Models
         public string DatFolder { get; set; }
         public double Progress { get; set; }
         public string ProgressText { get; set; }
-        public double ProgressMaximum { get; }
+        public double ProgressMaximum { get; set; }
         public bool IsPatching { get; }
         // Config
-        public bool ShowDps { get; }
-        public bool FastExtract { get; }
-        public bool DisableAutoBias { get; }
+        public bool ShowDps { get; set; } = true;
+        public bool FastExtract { get; set; } = true;
+        public bool DisableAutoBias { get; set; } = true;
+        public bool NoChatBan { get; set; } = true;
+        public Exception Exception { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
